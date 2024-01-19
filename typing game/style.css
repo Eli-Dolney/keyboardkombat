@@ -1,0 +1,83 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents scrolling */
+    font-family: 'Arial', sans-serif;
+    background: #1e1e1e; /* Dark background for a modern look */
+}
+
+#game-container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#scoreboard {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #f0db4f; /* A bright color for the score */
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.falling-item {
+    position: absolute;
+    color: #61dafb; /* A bright color for falling items */
+    font-size: 24px;
+    user-select: none; /* Prevents text selection */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fall {
+    0% { opacity: 1; transform: translateY(-100%); }
+    100% { opacity: 1; transform: translateY(100vh); }
+}
+
+.falling-item {
+    animation: fall linear 8s infinite;
+}
+
+#main-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    font-family: Arial, sans-serif;
+}
+
+#main-menu h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#pause-button, #back-menu-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin-left: 10px; /* Space between buttons */
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10; /* Ensure the buttons are above other elements */
+}
+
+#back-menu-button {
+    right: 130px; /* Adjust based on the size of your buttons */
+}
