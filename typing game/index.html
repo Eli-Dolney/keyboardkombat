@@ -3,22 +3,491 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Game</title>
+    <title>Keyboard Kombat - Ultimate Typing Game</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-    <div id="main-menu">
-        <h1>Typing Game</h1>
-        <button id="start-game">Start Game</button>
-        <!-- Add more buttons for different game modes here -->
+    <!-- Main Menu -->
+    <main id="main-menu" class="screen">
+        <div class="main-layout">
+            <!-- Header Section -->
+            <header class="main-header">
+                <h1 class="game-title">
+                    <span class="title-keyboard">⌨️</span>
+                    Keyboard Kombat
+                    <span class="title-lightning">⚡</span>
+                </h1>
+                <p class="game-subtitle">Master the art of lightning-fast typing</p>
+                
+                <!-- Quick Stats Bar -->
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">⚡</span>
+                        <span class="stat-value" id="header-best-wpm">0</span>
+                        <span class="stat-label">Best WPM</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🎯</span>
+                        <span class="stat-value" id="header-best-accuracy">0%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🏆</span>
+                        <span class="stat-value" id="header-high-score">0</span>
+                        <span class="stat-label">High Score</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🎮</span>
+                        <span class="stat-value" id="header-games-played">0</span>
+                        <span class="stat-label">Games</span>
+                    </div>
+                </div>
+                
+                <!-- Progression Bar -->
+                <div class="progression-bar">
+                    <div class="progression-info">
+                        <span class="progression-level" id="progression-level">Level 1</span>
+                        <span class="progression-name" id="progression-name">Novice</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                    </div>
+                    <div class="progression-points" id="progression-points">0 points</div>
+                </div>
+            </header>
+
+            <!-- Main Content Grid -->
+            <div class="main-content">
+                <!-- Game Modes Section -->
+                <section class="content-section game-modes-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-icon">🎮</span>
+                            Game Modes
+                        </h2>
+                        <p class="section-subtitle">Choose your typing challenge</p>
+                    </div>
+                    
+                    <div class="game-modes-grid">
+                        <button id="letters-mode" class="mode-button" data-mode="letters">
+                            <span class="mode-icon">🔤</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Letters</span>
+                                <span class="mode-desc">Basic letter typing</span>
+                                <span class="mode-difficulty">Beginner friendly</span>
+                            </div>
+                        </button>
+                        
+                        <button id="words-mode" class="mode-button" data-mode="words">
+                            <span class="mode-icon">📝</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Words</span>
+                                <span class="mode-desc">Common vocabulary</span>
+                                <span class="mode-difficulty">Build your skills</span>
+                            </div>
+                        </button>
+                        
+                        <button id="sentences-mode" class="mode-button" data-mode="sentences">
+                            <span class="mode-icon">📖</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Sentences</span>
+                                <span class="mode-desc">Full sentence practice</span>
+                                <span class="mode-difficulty">Advanced training</span>
+                            </div>
+                        </button>
+                        
+                        <button id="code-mode" class="mode-button" data-mode="code">
+                            <span class="mode-icon">💻</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Code</span>
+                                <span class="mode-desc">Programming syntax</span>
+                                <span class="mode-difficulty">For developers</span>
+                            </div>
+                        </button>
+                        
+                        <button id="programming-mode" class="mode-button" data-mode="programming">
+                            <span class="mode-icon">🔧</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Programming</span>
+                                <span class="mode-desc">Language keywords</span>
+                                <span class="mode-difficulty">Code practice</span>
+                            </div>
+                        </button>
+                        
+                        <button id="custom-mode" class="mode-button" data-mode="custom">
+                            <span class="mode-icon">✨</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Custom</span>
+                                <span class="mode-desc">Your own words</span>
+                                <span class="mode-difficulty">Personalized</span>
+                            </div>
+                        </button>
+                        
+                        <button id="mixed-mode" class="mode-button" data-mode="mixed">
+                            <span class="mode-icon">🎲</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Mixed</span>
+                                <span class="mode-desc">All content types</span>
+                                <span class="mode-difficulty">Variety challenge</span>
+                            </div>
+                        </button>
+                        
+                        <button id="speed-challenge" class="mode-button special" data-mode="speed">
+                            <span class="mode-icon">🚀</span>
+                            <div class="mode-content">
+                                <span class="mode-title">Speed Challenge</span>
+                                <span class="mode-desc">Ultimate test</span>
+                                <span class="mode-difficulty">Master level</span>
+                            </div>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Achievements Section -->
+                <section class="content-section achievements-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-icon">🏆</span>
+                            Achievements
+                        </h2>
+                        <p class="section-subtitle">Your typing milestones</p>
+                    </div>
+                    
+                    <div class="achievements-preview" id="achievements-preview">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    
+                    <button id="view-all-achievements" class="view-more-button">
+                        View All Achievements
+                        <span class="arrow">→</span>
+                    </button>
+                </section>
+
+                <!-- Settings & Options Section -->
+                <section class="content-section settings-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-icon">⚙️</span>
+                            Settings
+                        </h2>
+                        <p class="section-subtitle">Customize your experience</p>
+                    </div>
+                    
+                    <div class="settings-quick-panel">
+                        <div class="setting-item">
+                            <label for="quick-difficulty">Difficulty</label>
+                            <select id="quick-difficulty" class="quick-select">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                                <option value="insane">Insane</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="quick-theme">Theme</label>
+                            <select id="quick-theme" class="quick-select">
+                                <option value="dark" selected>Dark</option>
+                                <option value="light">Light</option>
+                                <option value="neon">Neon</option>
+                                <option value="retro">Retro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="toggle-label">
+                                <span>Sound Effects</span>
+                                <label class="quick-toggle">
+                                    <input type="checkbox" id="quick-sound" checked>
+                                    <span class="toggle-slider-small"></span>
+                                </label>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="toggle-label">
+                                <span>Particles</span>
+                                <label class="quick-toggle">
+                                    <input type="checkbox" id="quick-particles" checked>
+                                    <span class="toggle-slider-small"></span>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button id="advanced-settings-button" class="view-more-button">
+                        Advanced Settings
+                        <span class="arrow">→</span>
+                    </button>
+                </section>
+
+                <!-- Kids Section -->
+                <section class="content-section kids-section">
+                    <div class="section-header">
+                        <h2 class="section-title kids-title">
+                            <span class="section-icon">👑</span>
+                            Kids Corner
+                            <span class="section-icon">🦕</span>
+                        </h2>
+                        <p class="section-subtitle">Fun learning for little fingers!</p>
+                    </div>
+                    
+                    <div class="kids-modes">
+                        <button id="princess-mode" class="kids-mode-button princess-theme" data-mode="princess">
+                            <div class="kids-mode-icon">👸</div>
+                            <div class="kids-mode-content">
+                                <h3>Princess Castle</h3>
+                                <p>Magical letters & words</p>
+                                <div class="kids-difficulty">Ages 3-6</div>
+                            </div>
+                            <div class="kids-sparkles">✨</div>
+                        </button>
+                        
+                        <button id="dino-mode" class="kids-mode-button dino-theme" data-mode="dino">
+                            <div class="kids-mode-icon">🦕</div>
+                            <div class="kids-mode-content">
+                                <h3>Dino Adventure</h3>
+                                <p>Roaring fun with ABC's</p>
+                                <div class="kids-difficulty">Ages 3-6</div>
+                            </div>
+                            <div class="kids-sparkles">🌟</div>
+                        </button>
+                        
+                        <button id="numbers-mode" class="kids-mode-button numbers-theme" data-mode="numbers">
+                            <div class="kids-mode-icon">🔢</div>
+                            <div class="kids-mode-content">
+                                <h3>Number Fun</h3>
+                                <p>Count & type 1-2-3</p>
+                                <div class="kids-difficulty">Ages 4-7</div>
+                            </div>
+                            <div class="kids-sparkles">🎈</div>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Statistics Section -->
+                <section class="content-section statistics-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="section-icon">📊</span>
+                            Statistics
+                        </h2>
+                        <p class="section-subtitle">Track your progress</p>
+                    </div>
+                    
+                    <div class="stats-preview">
+                        <div class="stat-card-mini">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="preview-total-words">0</div>
+                                <div class="stat-label">Words Typed</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card-mini">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="preview-total-time">0h</div>
+                                <div class="stat-label">Time Played</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card-mini">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="preview-streak">0</div>
+                                <div class="stat-label">Best Streak</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="detailed-stats-button" class="view-more-button">
+                        Detailed Statistics
+                        <span class="arrow">→</span>
+                    </button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Game Screen -->
+    <main id="game-container" class="screen" style="display: none;">
+        <header class="game-hud">
+            <div class="hud-left">
+                <div id="score-display" class="hud-item">
+                    <span class="hud-label">Score</span>
+                    <span id="score-value" class="hud-value">0</span>
+                </div>
+                <div id="wpm-display" class="hud-item">
+                    <span class="hud-label">WPM</span>
+                    <span id="wpm-value" class="hud-value">0</span>
+                </div>
+                <div id="accuracy-display" class="hud-item">
+                    <span class="hud-label">Accuracy</span>
+                    <span id="accuracy-value" class="hud-value">100%</span>
+                </div>
+            </div>
+            
+            <div class="hud-center">
+                <div id="level-display" class="hud-item">
+                    <span class="hud-label">Level</span>
+                    <span id="level-value" class="hud-value">1</span>
+                </div>
+            </div>
+            
+            <div class="hud-right">
+                <button id="pause-button" class="control-button">
+                    <span id="pause-icon">⏸️</span>
+                </button>
+                <button id="back-menu-button" class="control-button">
+                    <span>🏠</span>
+                </button>
+            </div>
+        </header>
+
+        <div id="game-area" class="game-area">
+            <div id="falling-items-container"></div>
+            <div id="input-display" class="input-display">
+                <span id="current-input"></span>
+                <span id="input-cursor" class="cursor">|</span>
+            </div>
+        </div>
+
+        <div id="combo-display" class="combo-display" style="display: none;">
+            <span id="combo-text">COMBO</span>
+            <span id="combo-value">0</span>
+        </div>
+    </main>
+
+    <!-- Settings Screen -->
+    <main id="settings-screen" class="screen" style="display: none;">
+        <div class="settings-container">
+            <header class="screen-header">
+                <h2>Settings</h2>
+                <button id="close-settings" class="close-button">✖️</button>
+            </header>
+            
+            <div class="settings-grid">
+                <div class="setting-group">
+                    <h3>Difficulty</h3>
+                    <select id="difficulty-select">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="hard">Hard</option>
+                        <option value="insane">Insane</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Theme</h3>
+                    <select id="theme-select">
+                        <option value="dark" selected>Dark</option>
+                        <option value="light">Light</option>
+                        <option value="neon">Neon</option>
+                        <option value="retro">Retro</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Sound</h3>
+                    <label class="toggle">
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Particles</h3>
+                    <label class="toggle">
+                        <input type="checkbox" id="particles-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Statistics Screen -->
+    <main id="stats-screen" class="screen" style="display: none;">
+        <div class="stats-container">
+            <header class="screen-header">
+                <h2>Statistics</h2>
+                <button id="close-stats" class="close-button">✖️</button>
+            </header>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-value" id="best-wpm">0</div>
+                    <div class="stat-label">Best WPM</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-value" id="best-accuracy">0%</div>
+                    <div class="stat-label">Best Accuracy</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-value" id="high-score">0</div>
+                    <div class="stat-label">High Score</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-value" id="games-played">0</div>
+                    <div class="stat-label">Games Played</div>
+                </div>
+            </div>
+            
+            <div class="achievements">
+                <h3>Achievements</h3>
+                <div id="achievements-list" class="achievements-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pause Overlay -->
+    <div id="pause-overlay" class="overlay" style="display: none;">
+        <div class="pause-menu">
+            <h2>Game Paused</h2>
+            <button id="resume-button" class="menu-button">Resume</button>
+            <button id="restart-button" class="menu-button">Restart</button>
+            <button id="quit-button" class="menu-button">Quit to Menu</button>
+        </div>
     </div>
 
-    <div id="game-container" style="display: none;">
-        <div id="scoreboard">Score: 0</div>
-        <div id="feedback">Type the letters as they fall!</div>
-        <button id="pause-button">Pause</button>
-        <button id="back-menu-button">Back to Menu</button>
+    <!-- Game Over Screen -->
+    <div id="game-over-overlay" class="overlay" style="display: none;">
+        <div class="game-over-menu">
+            <h2>Game Over!</h2>
+            <div class="final-stats">
+                <div class="final-stat">
+                    <span class="stat-label">Final Score:</span>
+                    <span id="final-score" class="stat-value">0</span>
+                </div>
+                <div class="final-stat">
+                    <span class="stat-label">WPM:</span>
+                    <span id="final-wpm" class="stat-value">0</span>
+                </div>
+                <div class="final-stat">
+                    <span class="stat-label">Accuracy:</span>
+                    <span id="final-accuracy" class="stat-value">0%</span>
+                </div>
+            </div>
+            <div class="game-over-buttons">
+                <button id="play-again-button" class="menu-button primary">Play Again</button>
+                <button id="menu-button" class="menu-button">Main Menu</button>
+            </div>
+        </div>
     </div>
+
+    <!-- Particle System Container -->
+    <div id="particles-container"></div>
 
     <script src="script.js"></script>
 </body>
